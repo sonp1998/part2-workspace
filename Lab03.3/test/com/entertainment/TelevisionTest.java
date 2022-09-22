@@ -7,42 +7,37 @@ import org.junit.Test;
 
 public class TelevisionTest {
 
-  private static final int MIN_VOLUME = 0;
-  private static final int MAX_VOLUME = 100;
-  private static final int MIN_CHANNEL = 1;
-  private static final int MAX_CHANNEL = 999;
-
-
-  private final Television tv = new Television("Samsung", 0, DisplayType.PLASMA);
+  private final Television tv1 = new Television("Samsung", 0, DisplayType.OLED);
 
   @Test
   public void testSetVolume() {
     int volume = (Television.MIN_VOLUME + Television.MAX_VOLUME) /2;
-    tv.setVolume(volume);
-    assertEquals(volume, tv.getVolume());
+    tv1.setVolume(volume);
+    assertEquals(volume, tv1.getVolume());
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testSetVolumeIllegalArgumentException() {
-    int oldVolume = tv.getVolume();
+    int oldVolume = tv1.getVolume();
     int volume = Television.MIN_VOLUME -1;
     try {
-      tv.setVolume(volume);
+      tv1.setVolume(volume);
       fail();
     } catch (IllegalArgumentException e) {
-      assertEquals(oldVolume, tv.getVolume());
+      assertEquals(oldVolume, tv1.getVolume());
     }
   }
 
   @Test
   public void testChangeChannel() throws InvalidChannelException {
-
-    assertEquals(CHANNEL, tv.getCurrentChannel());
+    int channel = (Television.MIN_CHANNEL + Television.MAX_CHANNEL) /2;
+    tv1.changeChannel(channel);
+    assertEquals(channel, tv1.getCurrentChannel());
   }
 
   @Test(expected = InvalidChannelException.class)
-  public void testInvalidChannelException() throws InvalidChannelException {
-  tv.changeChannel(ILLEGAL_CHANNEL);
+  public void testInvalidChannelException() {
+  tv1.setVolume(Television.MIN_VOLUME-1);
   }
 
   @Test

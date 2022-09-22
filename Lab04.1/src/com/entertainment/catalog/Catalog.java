@@ -16,29 +16,44 @@ import java.util.Map;
 import com.entertainment.Television;
 
 public class Catalog {
+
   // in-memory catalog of Televisions
   private static final Collection<Television> catalog = new ArrayList<>(30);
 
   // prevent direct instantiation, this is an all-static class
   private Catalog() {
   }
-  
+
   /**
-   * Searches catalog by brand, and returns a collection of matching Televisions.
-   * A no-matches result should be an empty collection (not null).
+   * Searches catalog by brand, and returns a collection of matching Televisions. A no-matches
+   * result should be an empty collection (not null).
    */
+  //TODO modify so it passes 2 tests
   public static Collection<Television> findByBrand(String brand) {
-    return null;
+    Collection<Television> result = new ArrayList<>();
+    //iterate (use enhanced for loop) Iterate over catalog. for each brand name matching brand parameter, add it to result collection
+    for (Television tv : catalog) {
+      if (tv.getBrand().equals(brand)) {
+        result.add(tv);
+      }
+    }
+    return result;
   }
-  
+
   /**
-   * Searches catalog by one or more brands, and returns a map with an entry for each brand supplied, 
-   * with a corresponding collection of matching Televisions for that brand.
-   * A no-brands-passed result should be an empty map (not null).
+   * Searches catalog by one or more brands, and returns a map with an entry for each brand
+   * supplied, with a corresponding collection of matching Televisions for that brand. A
+   * no-brands-passed result should be an empty map (not null).
    */
-  public static Map<String,Collection<Television>> findByBrands(String... brands) {
-    return null;
+  //TODO hashmap
+  public static Map<String, Collection<Television>> findByBrands(String... brands) {
+    Map<String, Collection<Television>> result = new HashMap<>();
+    for (String brand : brands) {
+    result.put(brand,findByBrand(brand));
+    }
+    return result;
   }
+
 
   /**
    * Returns entire catalog.
