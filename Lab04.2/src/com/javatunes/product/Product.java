@@ -7,7 +7,7 @@
  * Copyright LearningPatterns Inc.
  */
 package com.javatunes.product;
-
+//can't make instance of product (can't instantiate). May contain abstract method b/c of this. Is constructor here.
 public abstract class Product {
   private String code;
 

@@ -9,6 +9,7 @@
 package com.javatunes.product;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class Order {
   private String id;
@@ -22,9 +23,15 @@ public class Order {
    * get the items from the cart and iterate over them, print each item's product code
    * get cart total and print
    */
-  public void processCart(Object reference_to_cart) {
-    
-  }
+  //add wild card part here???
+  public void processCart(ShoppingCart<? extends Product> cart) {
+    System.out.println("Order: " + id + " contains the following:");
+    for (Product item : cart.allItems()) {
+      System.out.println(item.getCode());
+    }
+    System.out.println(cart.total());
+    System.out.println("");
+    }
   
   public String getId() {
     return id;
