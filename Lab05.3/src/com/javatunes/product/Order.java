@@ -8,13 +8,19 @@
  */
 package com.javatunes.product;
 
+import com.javatunes.billing.Location;
+import com.javatunes.billing.TaxCalculator;
 import java.util.Collection;
 
 public class Order {
-  private String id;
-  
-  public Order(String id) {
+  private final String id;
+  private final TaxCalculator calculator;
+
+  private double total;
+
+  public Order(String id, Location location) {
     this.id = id;
+    calculator = location.calculator();
   }
   
   /**
@@ -29,10 +35,29 @@ public class Order {
     for (Product product : cartItems) {
       System.out.println(product.getCode());
     }
-    System.out.println("Order Total: " + cart.total());
+    total = cart.total() + getTax();
+    System.out.println("Order Total: " + total);
   }
   
   public String getId() {
     return id;
   }
+
+  public double getTax() {
+    return calculator.taxAmount(total);
+  }
+//    TaxCalculator calculator;
+//    if (location == Location.EUROPE) {
+//      calculator = new EuropeTax();
+//    } else if (location == Location.USA) {
+//      calculator = new USATax();
+//    } else {
+//      calculator = new OnlineTax();
+//    }
+//    return calculator.taxAmount(getTotalCost());
+//  }
+//
+//  public double getTotalCost() {
+//    return totalCost;
+//  }
 }
