@@ -15,10 +15,21 @@ public class RepeatingPrinterTest {
     thd1.start();
     
     // TODO: initialize the 'printer' reference variable with a block lambda
+
     // hint: you can copy / paste the *contents* of RepeatingPrinter's run() method
     // note: change the sysout to show "block-lambda"
-    Runnable printer = null;
+    Runnable printer = () -> {
+      while (true) {
+        System.out.println("block-lambda");
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          //Ignore exception; not serious.
+        }
+      }
+    };
     
     // TODO: create another Thread, passing in the 'printer' reference as its Runnable - then start it
+    new Thread(printer).start();
   }
 }
