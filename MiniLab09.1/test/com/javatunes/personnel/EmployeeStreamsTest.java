@@ -32,13 +32,14 @@ public class EmployeeStreamsTest {
    */
   @Test
   public void testSalaryLessThanSortNaturalOrder() {
-    List<Employee> employees = allEmployees.stream()
-      .filter(emp -> emp.getSalary() < 40000.0)
+    List<Employee> employees = allEmployees // allEmployees is a collection. All collections can be turned into a stream.
+        .stream()  //Feeding a stream with a list on a 'conveyor belt'. Starting a sequence of operations.
+      .filter(emp -> emp.getSalary() < 40000.0) // if empSalary <40,000 this expression true. Lambda is instance of predicate functional interface.
       .sorted()  // natural order
-      .collect(Collectors.toList());
+      .collect(Collectors.toList()); // now collect all into a list.
     
-    assertEquals(2, employees.size());
-    assertEquals(Long.valueOf(2),  employees.get(0).getId());
+    assertEquals(2, employees.size()); // gather that size, we are expecting 2 from it.
+    assertEquals(Long.valueOf(2),  employees.get(0).getId()); // In a list, with a concept of position.
     assertEquals(Long.valueOf(15), employees.get(1).getId());
   }
 }

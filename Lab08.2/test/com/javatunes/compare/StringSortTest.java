@@ -51,15 +51,16 @@ public class StringSortTest {
   @Test
   public void testSortMethodReference() {
     System.out.println("testSortMethodReference:");
-    
+
+    Comparator<String> ascendingLengthComparator = StringSortTest::compareStrings;
     // TODO: sort names by using a method reference
     System.out.println("Names sort - increasing length - method reference:");
-     names.sort(StringSortTest::compareStrings);
+     names.sort(ascendingLengthComparator);
      System.out.println(names + "\n");
     
     // TODO: sort sports by using a method reference
     System.out.println("Sports sort - increasing length - method reference:");
-     sports.sort(StringSortTest::compareStrings);
+     sports.sort(ascendingLengthComparator);
      System.out.println(sports);
   }
   

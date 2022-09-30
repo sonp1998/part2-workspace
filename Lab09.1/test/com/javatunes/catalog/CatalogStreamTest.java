@@ -51,7 +51,14 @@ public class CatalogStreamTest {
    */
   @Test
   public void testTitleEqualsArtistSortNaturalOrder() {
-    // TODO
+    // TODO dont need assertions. filer name == artist , sort by genre
+    List<MusicItem> sameArtists = allMusicItems
+        .stream()
+        .filter(item -> item.getTitle().equals(item.getArtist()))
+       // .sorted(Comparator.comparing(MusicItem::getMusicCategory))
+        .collect(Collectors.toList());
+    System.out.println(sameArtists);
+
   }
   
   /**
@@ -64,6 +71,12 @@ public class CatalogStreamTest {
   @Test
   public void testPriceLessThanSortMusicCategory() {
     // TODO
+    List<MusicItem> underTwelve = allMusicItems
+        .stream()
+        .filter(item -> item.getPrice() < 12.00)
+        .sorted(Comparator.comparing(item -> item.getMusicCategory()))
+        .collect(Collectors.toList());
+    System.out.println(underTwelve);
   }
   
   /**
@@ -74,6 +87,12 @@ public class CatalogStreamTest {
   @Test
   public void testSortMusicCategorySortReleaseDateDesc() {
     // TODO
+    List<MusicItem> rockUnder15 = allMusicItems
+        .stream()
+        .filter(item -> item.getPrice() < 15 && item.getMusicCategory() == MusicCategory.ROCK)
+        .sorted(Comparator.comparing(MusicItem::getReleaseDate))
+        .collect(Collectors.toList());
+    System.out.println(rockUnder15);
   }
   
   /**
@@ -85,6 +104,11 @@ public class CatalogStreamTest {
   @Test
   public void testPriceGreaterThanSortPriceDescThenMusicCategory() {
     // TODO
+//    List<MusicItem> itemOver17 = allMusicItems
+//        .stream()
+//        .filter(item->item.getPrice() > 17)
+//        .sorted(Comparator.comparing(MusicItem::getPrice().reversed().thenComparing(MusicItem:get))
+//        .collect(Collectors.toList());
   }
   
   /**
